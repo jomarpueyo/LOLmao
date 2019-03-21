@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LOLmao</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="league_patch">League Patch</string>
+    <string name="champions">Champions</string>
+    <string name="splash_temp">Teemo</string>
+    <string name="splash_title">da wittle shithead</string>
+    <string name="abilityTitle">Ability Title</string>
+    <string name="abilityDesc">Ability Description: REE OH EMM GEE REEEEEEEEEEE </string>
+    <string name="abilityLetter">PQWER</string>
+    <string name="ChampionAbilities">Abilities</string>
+
+</resources>

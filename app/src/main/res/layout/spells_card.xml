@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    android:id="@+id/cardView"
+    >
+
+    <!-- Image-Description -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
+
+        <!--Square Image-->
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/abilityImage"
+            android:src="@mipmap/teemo_sqimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            />
+
+        <!-- Title/Description  -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+                <!-- Title-PQWER -->
+                <RelativeLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/topTitle">
+
+                    <!--Ability Name-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/abilityName"
+                        android:textSize="25sp"
+                        android:text="@string/abilityTitle"
+                        android:layout_marginStart="5dp"/>
+
+                    <!--PQWER-->
+                    <TextView
+
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/abilityLetter"
+                        android:textSize="20sp"
+                        android:text="@string/abilityLetter"
+                        android:layout_marginEnd="5dp"/>
+
+                </RelativeLayout>
+
+            <!--Description-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/abilityDesc"
+                android:text="@string/abilityDesc"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>
