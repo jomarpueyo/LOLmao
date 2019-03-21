@@ -119,12 +119,4 @@ public class MainActivity extends AppCompatActivity {
         imageButton.isClickable();
         mainGrid.addView(imageButton);
     }
-
-
-
-
-
-
-
-
 }
