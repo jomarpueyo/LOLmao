@@ -65,14 +65,29 @@
 
         </RelativeLayout>
 
-        <!--Champion Abilities Title-->
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/ChampionAbilities"
-            android:layout_marginTop="10dp"
-            android:textSize="30sp" />
+            android:layout_marginTop="10dp">
+
+            <!--Champion Abilities Title-->
+            <TextView
+                android:id="@+id/abilityTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/ChampionAbilities"
+                android:textSize="30sp" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/ToggleOnButton"
+                android:id="@+id/toggleAbilities"
+                android:layout_alignEnd="@id/abilityTitle"/>
+
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"

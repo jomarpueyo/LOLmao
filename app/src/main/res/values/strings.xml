@@ -9,5 +9,7 @@
     <string name="abilityDesc">Ability Description: REE OH EMM GEE REEEEEEEEEEE </string>
     <string name="abilityLetter">PQWER</string>
     <string name="ChampionAbilities">Abilities</string>
+    <string name="ToggleOnButton">Details</string>
+    <string name="ToggleOffButton">Descriptions</string>
 
 </resources>

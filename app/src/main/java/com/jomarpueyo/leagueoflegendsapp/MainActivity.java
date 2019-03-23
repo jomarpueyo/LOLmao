@@ -28,15 +28,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //TODO: This does not appear before loading all the champions?
-        Toast.makeText(this,"Loading...", Toast.LENGTH_SHORT);
-        ProgressBar progressBar = findViewById(R.id.progress_loader);
-        progressBar.setVisibility(View.VISIBLE);
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        //TODO: Add support for multi-regional (For languages)
+        //TODO: Add support for multi-regional (For languages) Priority: low
         //TODO: Clean this code section up
         TextView textView = findViewById(R.id.textView);
         String thisVersion = "";
@@ -52,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             onlineMode = false;
         }
-
         //TODO: Clean-up img loading process
 
         GridLayout mainGrid = findViewById(R.id.mainGrid);
@@ -69,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 loadIntoView(newIMGButton, champion.getImage().getURL());
             }
         }
-        else{ //offline
+        //offline
+        else{
             textView.append(" 3? Maybe 4?");
 
             ImageButton newIMGButton = new ImageButton(this);
@@ -79,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this, "You're offline!", Toast.LENGTH_LONG).show();
         }
-        //Process done, hide pb
-        progressBar.setVisibility(View.GONE);
 
+        //Load grid
         setSingleEvent(mainGrid);
     }
+
     //TODO: Change grid size,
     private void setSingleEvent(GridLayout mainGrid){
         int childCount = mainGrid.getChildCount();
