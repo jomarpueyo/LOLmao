@@ -52,8 +52,8 @@ public class abilitiesAdapter extends RecyclerView.Adapter<abilitiesAdapter.abil
         abilitiesViewHolder.mTextView3.setText(returnLetter(i));
 
         loadIntoView(abilitiesViewHolder.mImageView,currentItem.getUrl());
-        abilitiesViewHolder.mImageView.setScaleX(2f);
-        abilitiesViewHolder.mImageView.setScaleY(2f);
+//        abilitiesViewHolder.mImageView.getLayoutParams().height = 100;
+//        abilitiesViewHolder.mImageView.getLayoutParams().height = 100;
 
     }
 

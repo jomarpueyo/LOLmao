@@ -17,13 +17,18 @@
 
         <!--Square Image-->
         <ImageView
-            android:layout_gravity="center"
+            android:layout_gravity="center_vertical"
             android:id="@+id/abilityImage"
             android:src="@mipmap/teemo_sqimg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
+            android:layout_margin="15dp"
+            android:maxWidth="24dp"
+            android:maxHeight="24dp"
+            android:scaleY="2"
+            android:scaleX="2"
+            android:adjustViewBounds="true"
+            android:background="@drawable/ability_border"
             />
 
         <!-- Title/Description  -->
