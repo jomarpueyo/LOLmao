@@ -18,8 +18,6 @@ import com.merakianalytics.orianna.types.core.staticdata.SpellVariables;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
 
 
 public class ChampionDetails extends AppCompatActivity {
@@ -93,7 +91,6 @@ public class ChampionDetails extends AppCompatActivity {
 
             }
         });
-
     }
 
     //Pica picasso, bitch.
@@ -110,9 +107,6 @@ public class ChampionDetails extends AppCompatActivity {
 
     private void loadCards(ArrayList<CardItem> abilitiesList, Champion champ, boolean detailsOn){
 
-//        String myString = thisChamp.getSpells().get(1).getCooldownBurn(); //TODO: LMAO TIME TO REFORMAT EVERYTHINNGGGGG
-
-        //TODO: Add damage and ratios
         if(detailsOn){ //Spell Ratios
             //Passive
             abilitiesList.add(new CardItem(
@@ -129,9 +123,7 @@ public class ChampionDetails extends AppCompatActivity {
                 String cooldowns = "";
                 String seconds = "seconds";
 
-                //TODO: Make a hashlibrary for each one???? Ask League Discord For Help
                 String damageToolTip = spell.getTooltip();
-                damageToolTip = damageToolTip.replace("{{ qdamage }}", "QReplaced");
 
                 for(final SpellVariables var : spell.getVariables()){
                     StringBuilder sb = new StringBuilder();
@@ -140,15 +132,18 @@ public class ChampionDetails extends AppCompatActivity {
                         sb.append(String.valueOf(coef));
                     }
                     damageToolTip = damageToolTip.replace("{{ "+var.getKey()+" }}", sb);
-
-                    for(List<Double> list : spell.getEffects()){
-                        Log.d("OUTPUT",list.get(0).toString());
-                    }
-
-
                 }
 
+                int j = 1;
+                String effect = "{{ e"+j+" }}";
+                //TODO: Find out why spell.getEffects() keeps crashing
+                //Immutable status? how to pull data
+//                while(spell.getEffects().get(j)!=null){
+//                        damageToolTip = damageToolTip.replace(effect,spell.getEffects().get(j).toString());
+//                        j++;
+//                }
 
+                Log.d("OUTPUT",filterText(damageToolTip) +"\n ");
 
                 if(manaResource.contains("{")){ //{{ abilityresourcename }}
                     manaResource=champ.getResource();

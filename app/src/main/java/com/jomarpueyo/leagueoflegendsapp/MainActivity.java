@@ -1,15 +1,16 @@
 package com.jomarpueyo.leagueoflegendsapp;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,12 +33,11 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         //TODO: Add support for multi-regional (For languages) Priority: low
-        //TODO: Clean this code section up
         TextView textView = findViewById(R.id.textView);
         String thisVersion = "";
         try{
             final Versions versions = Versions.withRegion(Region.NORTH_AMERICA).get();
-            //TODO: Fix this "Loop" for one time version obtain.
+            //TODO: Fix logic on this (Still unsure about Orianna Library use)
             for(final String version : versions){
                 thisVersion = version;
                 break;
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             onlineMode = false;
         }
-        //TODO: Clean-up img loading process
 
         GridLayout mainGrid = findViewById(R.id.mainGrid);
         if(onlineMode){
@@ -83,6 +82,13 @@ public class MainActivity extends AppCompatActivity {
     private void setSingleEvent(GridLayout mainGrid){
         int childCount = mainGrid.getChildCount();
 
+        //Variable width to adjust for other mobile device screens
+        //TODO: Test other mobile screens
+        int width = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int gridCol = width/200;
+
+        mainGrid.setColumnCount(gridCol);
+        Log.d("OUTPUT", String.valueOf(width)+" "+String.valueOf(gridCol));
         for(int i = 0; i <childCount; i++){
             ImageButton imageButton = (ImageButton) mainGrid.getChildAt(i);
             String passTag = mainGrid.getChildAt(i).getTag().toString();
