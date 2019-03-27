@@ -18,6 +18,7 @@ import com.merakianalytics.orianna.types.core.staticdata.SpellVariables;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 
 public class ChampionDetails extends AppCompatActivity {
@@ -117,7 +118,7 @@ public class ChampionDetails extends AppCompatActivity {
             //TODO: Clean up
             //QWER Spells
             for(final ChampionSpell spell: champ.getSpells()){
-            //TODO: Stringbuilder (Clean-up)
+
                 String manaResource = spell.getResource();
                 String resourceCost = "";
                 String cooldowns = "";
@@ -126,24 +127,24 @@ public class ChampionDetails extends AppCompatActivity {
                 String damageToolTip = spell.getTooltip();
 
                 for(final SpellVariables var : spell.getVariables()){
-                    StringBuilder sb = new StringBuilder();
+                    String spellCoef = "";
                     for(double coef : var.getCoefficients()){
-                        Log.d("OUTPUT","Coef: "+ String.valueOf(coef));
-                        sb.append(String.valueOf(coef));
+                        spellCoef = String.valueOf(coef);
                     }
-                    damageToolTip = damageToolTip.replace("{{ "+var.getKey()+" }}", sb);
+                    damageToolTip = damageToolTip.replace("{{ "+var.getKey()+" }}", spellCoef);
                 }
 
                 int j = 1;
                 String effect = "{{ e"+j+" }}";
                 //TODO: Find out why spell.getEffects() keeps crashing
                 //Immutable status? how to pull data
-//                while(spell.getEffects().get(j)!=null){
-//                        damageToolTip = damageToolTip.replace(effect,spell.getEffects().get(j).toString());
-//                        j++;
-//                }
+                while(j < spell.getEffects().size()){
+                        damageToolTip = damageToolTip.replace(effect,spell.getEffects().get(j).toString());
+                        j++;
+//                        Log.d("OUTPUT", "Replaced "+effect+" with  " + spell.getEffects().get(j).toString());
+                }
 
-                Log.d("OUTPUT",filterText(damageToolTip) +"\n ");
+               // Log.d("OUTPUT",filterText(damageToolTip) +"\n ");
 
                 if(manaResource.contains("{")){ //{{ abilityresourcename }}
                     manaResource=champ.getResource();
@@ -164,7 +165,6 @@ public class ChampionDetails extends AppCompatActivity {
                             manaResource = "";
                             break;
                         }
-
                     }
 
                     if(i==(spell.getCosts().size()-1)){

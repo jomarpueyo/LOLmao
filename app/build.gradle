@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+repositories {
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
 
 android {
     compileSdkVersion 28
@@ -34,7 +37,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //Orianna - https://github.com/meraki-analytics/orianna
-    implementation 'com.merakianalytics.orianna:orianna-android:4.0.0-rc3'
+    implementation "com.merakianalytics.orianna:orianna-android:4.0.0-SNAPSHOT"
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 }
