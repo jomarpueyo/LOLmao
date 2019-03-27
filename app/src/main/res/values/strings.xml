@@ -11,5 +11,6 @@
     <string name="ChampionAbilities">Abilities</string>
     <string name="ToggleOnButton">Details</string>
     <string name="ToggleOffButton">Descriptions</string>
+    <string name="ChampionSkinsTitle"> Skins</string>
 
 </resources>

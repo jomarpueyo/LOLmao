@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ChampionDetails">
 
     <!--Image/Recycler-->
@@ -98,12 +99,51 @@
 
         </android.support.v7.widget.RecyclerView>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
+        <TextView
+            android:id="@+id/championSkinsText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:text="@string/ChampionSkinsTitle"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        </android.support.v4.view.ViewPager>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                >
+
+            </android.support.v4.view.ViewPager>
+
+            <LinearLayout
+                android:id="@+id/dotsLayout"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignBottom="@+id/viewPager">
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/skinTitleText"
+                android:text="Skin Name"
+                android:textSize="25sp"
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

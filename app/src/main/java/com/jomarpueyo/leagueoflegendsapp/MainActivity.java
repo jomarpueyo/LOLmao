@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         int gridCol = width/200;
 
         mainGrid.setColumnCount(gridCol);
-        Log.d("OUTPUT", String.valueOf(width)+" "+String.valueOf(gridCol));
         for(int i = 0; i <childCount; i++){
             ImageButton imageButton = (ImageButton) mainGrid.getChildAt(i);
             String passTag = mainGrid.getChildAt(i).getTag().toString();
@@ -104,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Pica picasso, bitch.
     private void loadIntoView(ImageView imageView, String url){
         Picasso.get().load(url).into(imageView);
     }

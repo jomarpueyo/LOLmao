@@ -3,21 +3,50 @@ package com.jomarpueyo.leagueoflegendsapp;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
-//TODO: https://www.youtube.com/watch?v=Q2FPDI99-as
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+
 public class ImageAdapter extends PagerAdapter {
 
-    private Context mContext;
-    private int[] mImageIds = new int[]{};
+    private Context context;
+    private ArrayList<String> imageUrls;
+
+    ImageAdapter(Context context, ArrayList<String> imageUrls){
+        this.context = context;
+        this.imageUrls = imageUrls;
+    }
 
     @Override
     public int getCount() {
-        return 0;
+        return imageUrls.size();
     }
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-        return false;
+        return view == o;
     }
+
+    @NonNull
+    @Override
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        ImageView imageView = new ImageView(context);
+        Picasso.get()
+                .load(imageUrls.get(position))
+                .into(imageView);
+        container.addView(imageView);
+
+        return imageView;
+    }
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        container.removeView((View) object);
+    }
+
 }
