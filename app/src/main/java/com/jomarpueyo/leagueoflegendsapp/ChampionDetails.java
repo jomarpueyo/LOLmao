@@ -1,7 +1,7 @@
 package com.jomarpueyo.leagueoflegendsapp;
 
 import android.content.Intent;
-import android.content.res.Resources;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -30,15 +29,16 @@ public class ChampionDetails extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private LinearLayout mDotLayout;
-    private TextView[] mDots;
     private int currentDots;
     private Champion thisChamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_champion_details);
+
+        //Locked to Portrait mode
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_champion_details);
 
         //TODO: if(Offline) status
@@ -71,6 +71,7 @@ public class ChampionDetails extends AppCompatActivity {
         loadCards(abilitiesList,champ,false);
 
         //Load default
+        RecyclerView.LayoutManager mLayoutManager;
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(ChampionDetails.super.getBaseContext());
@@ -100,17 +101,12 @@ public class ChampionDetails extends AppCompatActivity {
             }
         });
 
-        TextView championSkinsText = findViewById(R.id.championSkinsText);
-        String preText = champ.getName()+" Skins";
-        championSkinsText.setText(preText);
-
         //Load List of Champion Skins
         ArrayList<String> imageUrls = new ArrayList<>();
 
         int i = 1;
         while (i<champ.getSkins().size()){
             imageUrls.add(champ.getSkins().get(i).getSplashImageURL());
-            Log.d("OUTPUT", champ.getSkins().get(i).getSplashImageURL());
             i++;
         }
         currentDots = i;
@@ -129,8 +125,9 @@ public class ChampionDetails extends AppCompatActivity {
     }
 
     private void addDotsIndicator(int position){
-        mDotLayout = findViewById(R.id.dotsLayout);
-        mDots = new TextView[currentDots-1];
+        LinearLayout mDotLayout = findViewById(R.id.dotsLayout);
+        TextView[] mDots = new TextView[currentDots-1];
+
         mDotLayout.removeAllViews();
 
         for(int i = 0; i < mDots.length; i++){
@@ -155,10 +152,13 @@ public class ChampionDetails extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int i) {
+            //Update Image
             addDotsIndicator(i);
+
             //Update skin name with the skin displayed
             TextView tv = findViewById(R.id.skinTitleText);
             tv.setText(thisChamp.getSkins().get(i+1).getName());
+
         }
 
         @Override

@@ -1,12 +1,14 @@
 package com.jomarpueyo.leagueoflegendsapp;
 
 import android.content.Context;
+
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 
 import com.squareup.picasso.Picasso;
 
@@ -35,13 +37,16 @@ public class ImageAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        ImageView imageView = new ImageView(context);
+        ImageButton imageButton = new ImageButton(context);
+        imageButton.setBackgroundColor(Color.parseColor("#FAFAFA"));
+
         Picasso.get()
                 .load(imageUrls.get(position))
-                .into(imageView);
-        container.addView(imageView);
+                .fit()
+                .into(imageButton);
+        container.addView(imageButton);
 
-        return imageView;
+        return imageButton;
     }
 
     @Override

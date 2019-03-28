@@ -23,23 +23,16 @@
         android:paddingEnd="5dp"
         />
 
-    <!-- Title -->
-    <RelativeLayout
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-
         <!--Champion Title-->
         <TextView
             android:id="@+id/textGrid"
             android:text="@string/champions"
             android:textColor="@android:color/black"
             android:textSize="34sp"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-    </RelativeLayout>
 
         <!--Grid of Champions-->
         <GridLayout
