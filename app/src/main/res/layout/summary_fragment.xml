@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!--Image-Title-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <!--Splash Image-->
+        <ImageView
+            android:id="@+id/splashImage"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/teemo_splash"
+            />
+
+            <!--Champion Name-->
+            <TextView
+                android:id="@+id/championName"
+                android:text="@string/splash_temp"
+                android:textSize="28sp"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_above="@+id/championTitle"
+                android:textAllCaps="true"
+                style="@style/LetterShadows"
+                />
+
+            <!--Champion Title-->
+            <TextView
+                android:id="@+id/championTitle"
+                android:text="@string/splash_title"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/splashImage"
+                android:gravity="center"
+                android:textAllCaps="true"
+                style="@style/LetterShadows"
+                />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

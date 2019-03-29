@@ -12,5 +12,8 @@
     <string name="ToggleOnButton">Details</string>
     <string name="ToggleOffButton">Descriptions</string>
     <string name="ChampionSkinsTitle">Champion Skins</string>
+    <string name="title_activity_champion_details_tabs">ChampionDetailsTabs</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

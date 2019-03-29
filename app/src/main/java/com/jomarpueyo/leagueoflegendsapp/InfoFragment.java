@@ -1,70 +1,43 @@
 package com.jomarpueyo.leagueoflegendsapp;
 
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Switch;
-import android.widget.TextView;
 
-import com.merakianalytics.orianna.types.common.Region;
 import com.merakianalytics.orianna.types.core.staticdata.Champion;
 import com.merakianalytics.orianna.types.core.staticdata.ChampionSpell;
 import com.merakianalytics.orianna.types.core.staticdata.SpellVariables;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChampionDetails extends AppCompatActivity {
+public class InfoFragment extends Fragment {
+    private static final String TAG = "InfoFragment";
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private int currentDots;
-    private Champion thisChamp;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_champion_details);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.info_fragment, container, false);
 
-        //Locked to Portrait mode
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_champion_details);
-
-        //TODO: if(Offline) status
-
-        //Obtain champion data
-        Intent intent = getIntent();
-        int champID = Integer.parseInt(intent.getStringExtra("CHAMP_ID"));
-        final Champion champ = Champion.withId(champID).withRegion(Region.NORTH_AMERICA).get();
-        thisChamp = champ;
-
-        //TODO: Drag for more Champion Skins
-        //Initialize UI
-        ImageView splashImage = findViewById(R.id.splashImage);
-        TextView nameText = findViewById(R.id.championName);
-        TextView titleText = findViewById(R.id.championTitle);
-
-        //Set values
-        loadIntoView(splashImage,champ.getSkins().get(0).getSplashImageURL());
-        nameText.setText(String.valueOf(champ.getName()));
-        titleText.setText(String.valueOf(champ.getTitle()));
+        ChampionDetailsTabs activity = (ChampionDetailsTabs) getActivity();
+        Champion champ = activity.champData();
 
         //Change text on toggle switch
         Switch toggleAbilities;
-        toggleAbilities = findViewById(R.id.toggleAbilities);
+        toggleAbilities = view.findViewById(R.id.toggleAbilities);
         //TODO: Temporarily disabled
-        toggleAbilities.setVisibility(View.GONE);
+//        toggleAbilities.setVisibility(View.GONE);
 
         //Populate RecyclerView
         ArrayList<CardItem> abilitiesList = new ArrayList<>();
@@ -72,9 +45,9 @@ public class ChampionDetails extends AppCompatActivity {
 
         //Load default
         RecyclerView.LayoutManager mLayoutManager;
-        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView = view.findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(ChampionDetails.super.getBaseContext());
+        mLayoutManager = new LinearLayoutManager(view.getContext());
         mAdapter = new abilitiesAdapter(abilitiesList);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -102,85 +75,11 @@ public class ChampionDetails extends AppCompatActivity {
             }
         });
 
-        //Load List of Champion Skins
-        ArrayList<String> imageUrls = new ArrayList<>();
-
-        int i = 1;
-        while (i<champ.getSkins().size()){
-            imageUrls.add(champ.getSkins().get(i).getSplashImageURL());
-            i++;
-        }
-        currentDots = i;
-
-        //Default Skin Image Rename
-        TextView tv = findViewById(R.id.skinTitleText);
-        tv.setText(champ.getSkins().get(1).getName());
-
-        //Draggable Images
-        ViewPager viewPager = findViewById(R.id.viewPager);
-        ImageAdapter imageAdapter = new ImageAdapter(this,imageUrls);
-        viewPager.setAdapter(imageAdapter);
-
-        addDotsIndicator(0);
-        viewPager.addOnPageChangeListener(viewListener);
-    }
-
-    private void addDotsIndicator(int position){
-        LinearLayout mDotLayout = findViewById(R.id.dotsLayout);
-        TextView[] mDots = new TextView[currentDots-1];
-
-        mDotLayout.removeAllViews();
-
-        for(int i = 0; i < mDots.length; i++){
-            mDots[i] = new TextView(this);
-            mDots[i].setText(Html.fromHtml("&#8226"));
-            mDots[i].setTextSize(35);
-            mDots[i].setTextColor(getResources().getColor(R.color.transparentWhite));
-
-            mDotLayout.addView(mDots[i]);
-        }
-
-        if(mDots.length>0){
-            mDots[position].setTextColor(Color.WHITE);
-        }
-    }
-
-    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int i, float v, int i1) {
-
-        }
-
-        @Override
-        public void onPageSelected(int i) {
-            //Update Image
-            addDotsIndicator(i);
-
-            //Update skin name with the skin displayed
-            TextView tv = findViewById(R.id.skinTitleText);
-            tv.setText(thisChamp.getSkins().get(i+1).getName());
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int i) {
-
-        }
-    };
-
-    private void loadIntoView(ImageView imageView, String url){
-        Picasso.get().load(url).into(imageView);
-    }
-
-    private String filterText(String s){
-        //Do not fix "Redundant"
-        return s.replaceAll("<\\/{0,1}font.*?>","")
-                .replaceAll("<br>","\n")
-                .replaceAll("<[^>]*>", "");
+        return view;
     }
 
     private void loadCards(ArrayList<CardItem> abilitiesList, Champion champ, boolean detailsOn){
-    //TODO: Clean up this whole section
+        //TODO: Clean up this whole section
         //Spell Details and Ratios
         if(detailsOn){
             //Passive
@@ -279,9 +178,9 @@ public class ChampionDetails extends AppCompatActivity {
                         spell.getImage().getURL(),
                         spell.getName(),
                         filterText(damageToolTip)
-                        +"\n"+resourceCost + manaResource
-                        +"\n"+cooldowns + seconds
-                        ));
+                                +"\n"+resourceCost + manaResource
+                                +"\n"+cooldowns + seconds
+                ));
             }
 
         }
@@ -302,7 +201,13 @@ public class ChampionDetails extends AppCompatActivity {
 
             }
         }
+    }
 
+    private String filterText(String s){
+        //Do not fix "Redundant"
+        return s.replaceAll("<\\/{0,1}font.*?>","")
+                .replaceAll("<br>","\n")
+                .replaceAll("<[^>]*>", "");
     }
 
 }

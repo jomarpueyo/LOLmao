@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             imageButton.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
-                    Intent intent = new Intent(MainActivity.this, ChampionDetails.class);
+                    Intent intent = new Intent(MainActivity.this, ChampionDetailsTabs.class);
                     intent.putExtra("CHAMP_ID",passTag);
                     startActivity(intent);
                 }
