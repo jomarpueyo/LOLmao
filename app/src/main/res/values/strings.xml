@@ -15,5 +15,13 @@
     <string name="title_activity_champion_details_tabs">ChampionDetailsTabs</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="championTags">TOP JG MID ADC SUP</string>
+    <string name="lore_title">Lore</string>
+    <string name="lore"> Once a upon a time(…, &#8230;)</string>
+    <string name="loadingImage">Loading Screen Image</string>
+    <string name="summary">Summary</string>
+    <string name="ratingTitle">Champion Ratings</string>
+    <string name="ally_tips">Ally Tips</string>
+    <string name="enemy_tips">Enemy Tips</string>
 
 </resources>

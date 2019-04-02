@@ -19,14 +19,14 @@ import com.merakianalytics.orianna.types.core.staticdata.Champions;
 import com.merakianalytics.orianna.types.core.staticdata.Versions;
 import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity {
+public class ChampionGridList extends AppCompatActivity {
 
     Boolean onlineMode = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.champion_grid_list);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             imageButton.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
-                    Intent intent = new Intent(MainActivity.this, ChampionDetailsTabs.class);
+                    Intent intent = new Intent(ChampionGridList.this, ChampionDetailsTabs.class);
                     intent.putExtra("CHAMP_ID",passTag);
                     startActivity(intent);
                 }

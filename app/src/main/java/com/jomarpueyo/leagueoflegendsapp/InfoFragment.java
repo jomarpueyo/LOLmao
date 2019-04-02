@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.merakianalytics.orianna.types.core.staticdata.Champion;
 import com.merakianalytics.orianna.types.core.staticdata.ChampionSpell;
@@ -74,6 +75,11 @@ public class InfoFragment extends Fragment {
                 mRecyclerView.setAdapter(mAdapter);
             }
         });
+
+        TextView tipsText = view.findViewById(R.id.allytipsText);
+        TextView enemyTips = view.findViewById(R.id.enemytipsText);
+        tipsText.setText(String.join("\n\n",champ.getAllyTips()));
+        enemyTips.setText(String.join("\n\n",champ.getEnemyTips()));
 
         return view;
     }
@@ -182,7 +188,6 @@ public class InfoFragment extends Fragment {
                                 +"\n"+cooldowns + seconds
                 ));
             }
-
         }
         //Spell Descriptions
         else{

@@ -10,21 +10,23 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.merakianalytics.orianna.types.core.staticdata.Champion;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ShopFragment extends Fragment {
     private static final String TAG = "ShopFragment";
 
-
     private int currentDots;
     private Champion thisChamp;
     private LinearLayout mDotLayout;
     private TextView tv;
+    private ImageView loadingView;
 
     @Nullable
     @Override
@@ -35,6 +37,7 @@ public class ShopFragment extends Fragment {
         Champion champ = activity.champData();
         thisChamp = champ;
 
+        //TODO: New viewpager for loading screens (no dots)
         //Load List of Champion Skins
         ArrayList<String> imageUrls = new ArrayList<>();
 
@@ -48,9 +51,15 @@ public class ShopFragment extends Fragment {
         tv = view.findViewById(R.id.skinTitleText);
         ViewPager viewPager = view.findViewById(R.id.viewPager);
         mDotLayout = view.findViewById(R.id.dotsLayout);
+        loadingView = view.findViewById(R.id.loadingImg);
+
 
         //Default Skin Image Rename
         tv.setText(thisChamp.getSkins().get(1).getName());
+        loadIntoView(loadingView,thisChamp.getSkins().get(1).getLoadingImageURL());
+        loadingView.setScaleX(1.5f);
+        loadingView.setScaleY(1.5f);
+
         //Draggable Images
         viewPager.setAdapter(new ImageAdapter(getActivity(),imageUrls));
 
@@ -92,7 +101,7 @@ public class ShopFragment extends Fragment {
 
             //Update skin name with the skin displayed
             tv.setText(thisChamp.getSkins().get(i+1).getName());
-
+            loadIntoView(loadingView,thisChamp.getSkins().get(i+1).getLoadingImageURL());
         }
 
         @Override
@@ -101,4 +110,7 @@ public class ShopFragment extends Fragment {
         }
     };
 
+    private void loadIntoView(ImageView imageView, String url){
+        Picasso.get().load(url).into(imageView);
+    }
 }
