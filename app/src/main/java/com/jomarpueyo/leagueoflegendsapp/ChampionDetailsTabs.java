@@ -22,7 +22,7 @@ public class ChampionDetailsTabs extends AppCompatActivity {
     private Champion champion;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champion_details_tabs);
 
@@ -49,7 +49,7 @@ public class ChampionDetailsTabs extends AppCompatActivity {
 
     }
 
-    private void setupViewPager(ViewPager viewPager){
+    private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new SummaryFragment(), "Summary");
@@ -59,7 +59,7 @@ public class ChampionDetailsTabs extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
-    public Champion champData(){
+    public Champion champData() {
         return this.champion;
     }
 

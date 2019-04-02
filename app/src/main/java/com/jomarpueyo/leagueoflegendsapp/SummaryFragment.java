@@ -38,12 +38,14 @@ public class SummaryFragment extends Fragment {
         TextView scaleText = view.findViewById(R.id.champScales);
 
         //Set values
-        loadIntoView(splashImage,champ.getSkins().get(0).getSplashImageURL());
+        loadIntoView(splashImage, champ.getSkins().get(0).getSplashImageURL());
         nameText.setText(String.valueOf(champ.getName()));
         titleText.setText(String.valueOf(champ.getTitle()));
 
+        Log.d("OUTPUT", champ.getSkins().get(0).getLoadingImageURL());
+
         //Set Champion Values
-        String champRatings = "Role: " + String.join("/",champ.getTags());
+        String champRatings = "Role: " + String.join("/", champ.getTags());
 
         champRatings += "\nResource Type: " + champ.getResource()
                 + "\nAttack Rating: " + champ.getPhysicalRating()
@@ -55,15 +57,16 @@ public class SummaryFragment extends Fragment {
         //TODO: Champion Stats
         ChampionStats cs = champ.getStats();
         String champScales =
-                "Health " + cs.getHealth() + " - " + (cs.getHealth()+cs.getHealthPerLevel()*18)
-                +"\nHealth Regen. " + cs.getHealthRegen() + " - " + (cs.getHealthRegen()+cs.getHealthRegenPerLevel()*18)
-                +"\nMana " + cs.getMana() + " - " + (cs.getMana()+cs.getManaPerLevel()*18)
-                +"\nMana Regen. " + cs.getManaRegen() + " - " + (cs.getManaRegen()+cs.getManaRegenPerLevel()*18);
+                "Health " + cs.getHealth() + " - " + (cs.getHealth() + cs.getHealthPerLevel() * 18)
+                        + "\nHealth Regen. " + cs.getHealthRegen() + " - " + (cs.getHealthRegen() + cs.getHealthRegenPerLevel() * 18)
+                        + "\nMana " + cs.getMana() + " - " + (cs.getMana() + cs.getManaPerLevel() * 18)
+                        + "\nMana Regen. " + cs.getManaRegen() + " - " + (cs.getManaRegen() + cs.getManaRegenPerLevel() * 18);
 
         Log.d("OUTPUT", champScales);
 
+
         //Set Champion Loading Image
-        loadIntoView(loadingImg,champ.getSkins().get(0).getLoadingImageURL());
+        loadIntoView(loadingImg, champ.getSkins().get(0).getLoadingImageURL());
         loadingImg.setScaleX(1.5f);
         loadingImg.setScaleY(1.5f);
 
@@ -74,7 +77,7 @@ public class SummaryFragment extends Fragment {
         return view;
     }
 
-    private void loadIntoView(ImageView imageView, String url){
+    private void loadIntoView(ImageView imageView, String url) {
         Picasso.get().load(url).into(imageView);
     }
 }

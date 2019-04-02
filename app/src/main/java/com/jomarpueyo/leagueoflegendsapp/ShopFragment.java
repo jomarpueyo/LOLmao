@@ -42,7 +42,7 @@ public class ShopFragment extends Fragment {
         ArrayList<String> imageUrls = new ArrayList<>();
 
         int i = 1;
-        while (i<champ.getSkins().size()){
+        while (i < champ.getSkins().size()) {
             imageUrls.add(champ.getSkins().get(i).getSplashImageURL());
             i++;
         }
@@ -56,12 +56,12 @@ public class ShopFragment extends Fragment {
 
         //Default Skin Image Rename
         tv.setText(thisChamp.getSkins().get(1).getName());
-        loadIntoView(loadingView,thisChamp.getSkins().get(1).getLoadingImageURL());
+        loadIntoView(loadingView, thisChamp.getSkins().get(1).getLoadingImageURL());
         loadingView.setScaleX(1.5f);
         loadingView.setScaleY(1.5f);
 
         //Draggable Images
-        viewPager.setAdapter(new ImageAdapter(getActivity(),imageUrls));
+        viewPager.setAdapter(new ImageAdapter(getActivity(), imageUrls));
 
         addDotsIndicator(0);
         viewPager.addOnPageChangeListener(viewListener);
@@ -69,12 +69,12 @@ public class ShopFragment extends Fragment {
         return view;
     }
 
-    private void addDotsIndicator(int position){
-        TextView[] mDots = new TextView[currentDots-1];
+    private void addDotsIndicator(int position) {
+        TextView[] mDots = new TextView[currentDots - 1];
 
         mDotLayout.removeAllViews();
 
-        for(int i = 0; i < mDots.length; i++){
+        for (int i = 0; i < mDots.length; i++) {
             mDots[i] = new TextView(this.getActivity());
             mDots[i].setText(Html.fromHtml("&#8226"));
             mDots[i].setTextSize(35);
@@ -83,7 +83,7 @@ public class ShopFragment extends Fragment {
             mDotLayout.addView(mDots[i]);
         }
 
-        if(mDots.length>0){
+        if (mDots.length > 0) {
             mDots[position].setTextColor(Color.WHITE);
         }
     }
@@ -100,8 +100,8 @@ public class ShopFragment extends Fragment {
             addDotsIndicator(i);
 
             //Update skin name with the skin displayed
-            tv.setText(thisChamp.getSkins().get(i+1).getName());
-            loadIntoView(loadingView,thisChamp.getSkins().get(i+1).getLoadingImageURL());
+            tv.setText(thisChamp.getSkins().get(i + 1).getName());
+            loadIntoView(loadingView, thisChamp.getSkins().get(i + 1).getLoadingImageURL());
         }
 
         @Override
@@ -110,7 +110,7 @@ public class ShopFragment extends Fragment {
         }
     };
 
-    private void loadIntoView(ImageView imageView, String url){
+    private void loadIntoView(ImageView imageView, String url) {
         Picasso.get().load(url).into(imageView);
     }
 }

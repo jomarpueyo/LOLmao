@@ -1,52 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
 
     <!--Image-Title-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <!--Splash Image-->
         <ImageView
             android:id="@+id/splashImage"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/teemo_splash"
-            />
+            android:src="@mipmap/teemo_splash" />
 
-            <!--Champion Name-->
-            <TextView
-                android:id="@+id/championName"
-                android:text="@string/splash_temp"
-                android:textSize="28sp"
-                android:textColor="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_above="@+id/championTitle"
-                android:textAllCaps="true"
-                style="@style/LetterShadows"
-                />
+        <!--Champion Name-->
+        <TextView
+            android:id="@+id/championName"
+            style="@style/LetterShadows"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/championTitle"
+            android:gravity="center"
+            android:text="@string/splash_temp"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="28dp" />
 
-            <!--Champion Title-->
-            <TextView
-                android:id="@+id/championTitle"
-                android:text="@string/splash_title"
-                android:textSize="20sp"
-                android:textColor="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/splashImage"
-                android:gravity="center"
-                android:textAllCaps="true"
-                style="@style/LetterShadows"
-                />
+        <!--Champion Title-->
+        <TextView
+            android:id="@+id/championTitle"
+            style="@style/LetterShadows"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/splashImage"
+            android:gravity="center"
+            android:text="@string/splash_title"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
 
     </RelativeLayout>
 
@@ -68,7 +63,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:text="@string/championTags"
-                android:textSize="20sp" />
+                android:textSize="20dp" />
 
         </LinearLayout>
 
@@ -84,9 +79,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:textSize="20sp" />
+                android:textSize="20dp" />
 
-    </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -106,17 +101,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/lore_title"
-                android:textSize="30sp"/>
+                android:textSize="30dp" />
 
             <TextView
                 android:id="@+id/loreTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_margin="10dp"
-                android:textSize="20sp"
-                android:text="@string/lore"/>
+                android:gravity="center"
+                android:text="@string/lore"
+                android:textSize="20dp" />
 
         </LinearLayout>
 
@@ -129,9 +124,9 @@
             <ImageView
                 android:id="@+id/loadingImg"
                 android:layout_width="wrap_content"
-                android:layout_height="300dp"
+                android:layout_height="350dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp" />
 
         </LinearLayout>
 

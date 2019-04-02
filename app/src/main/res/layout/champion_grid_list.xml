@@ -12,26 +12,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="25">
-    <!-- Patch Version -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/league_patch"
-        android:layout_margin="5dp"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        />
+        <!-- Patch Version -->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="@string/league_patch" />
 
         <!--Champion Title-->
         <TextView
             android:id="@+id/textGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="@string/champions"
             android:textColor="@android:color/black"
-            android:textSize="34sp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="34dp" />
 
 
         <!--Grid of Champions-->
@@ -39,10 +38,9 @@
             android:id="@+id/mainGrid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:columnCount="7"
             android:layout_gravity="center"
             android:layout_margin="5dp"
-            >
+            android:columnCount="7">
 
         </GridLayout>
 

@@ -15,13 +15,13 @@ import java.util.ArrayList;
 public class abilitiesAdapter extends RecyclerView.Adapter<abilitiesAdapter.abilitiesViewHolder> {
     private ArrayList<CardItem> mAbilitiesList;
 
-    public static class abilitiesViewHolder extends RecyclerView.ViewHolder{
+    public static class abilitiesViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
         public TextView mTextView1;
         public TextView mTextView2;
         public TextView mTextView3;
 
-        public abilitiesViewHolder(View itemView){
+        public abilitiesViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.abilityImage);
             mTextView1 = itemView.findViewById(R.id.abilityName);
@@ -31,7 +31,7 @@ public class abilitiesAdapter extends RecyclerView.Adapter<abilitiesAdapter.abil
         }
     }
 
-    public abilitiesAdapter(ArrayList<CardItem> abilitiesList){
+    public abilitiesAdapter(ArrayList<CardItem> abilitiesList) {
         mAbilitiesList = abilitiesList;
     }
 
@@ -51,7 +51,7 @@ public class abilitiesAdapter extends RecyclerView.Adapter<abilitiesAdapter.abil
         abilitiesViewHolder.mTextView2.setText(currentItem.getText2());
         abilitiesViewHolder.mTextView3.setText(returnLetter(i));
 
-        loadIntoView(abilitiesViewHolder.mImageView,currentItem.getUrl());
+        loadIntoView(abilitiesViewHolder.mImageView, currentItem.getUrl());
     }
 
     @Override
@@ -59,18 +59,23 @@ public class abilitiesAdapter extends RecyclerView.Adapter<abilitiesAdapter.abil
         return mAbilitiesList.size();
     }
 
-    private String returnLetter(int i){
-        switch (i){
-            case 0: return "Passive";
-            case 1: return "Q";
-            case 2: return "W";
-            case 3: return "E";
-            case 4: return "R";
+    private String returnLetter(int i) {
+        switch (i) {
+            case 0:
+                return "Passive";
+            case 1:
+                return "Q";
+            case 2:
+                return "W";
+            case 3:
+                return "E";
+            case 4:
+                return "R";
         }
         return "REE";
     }
 
-    private void loadIntoView(ImageView imageView, String url){
+    private void loadIntoView(ImageView imageView, String url) {
         Picasso.get().load(url).into(imageView);
     }
 }

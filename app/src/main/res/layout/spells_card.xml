@@ -1,78 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:orientation="vertical"
-    android:id="@+id/cardView"
-    >
+    android:orientation="vertical">
 
     <!-- Image-Description -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
 
         <!--Square Image-->
         <ImageView
-            android:layout_gravity="center_vertical"
             android:id="@+id/abilityImage"
-            android:src="@mipmap/teemo_sqimg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_margin="15dp"
-            android:maxWidth="24dp"
-            android:maxHeight="24dp"
-            android:scaleY="2"
-            android:scaleX="2"
             android:adjustViewBounds="true"
             android:background="@drawable/ability_border"
-            />
+            android:maxWidth="24dp"
+            android:maxHeight="24dp"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:src="@mipmap/teemo_sqimg" />
 
         <!-- Title/Description  -->
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-                <!-- Title-PQWER -->
-                <RelativeLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
+            <!-- Title-PQWER -->
+            <RelativeLayout
+                android:id="@+id/topTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!--Ability Name-->
+                <TextView
+                    android:id="@+id/abilityName"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/topTitle">
+                    android:layout_marginStart="5dp"
+                    android:text="@string/abilityTitle"
+                    android:textSize="25dp" />
 
-                    <!--Ability Name-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/abilityName"
-                        android:textSize="25sp"
-                        android:text="@string/abilityTitle"
-                        android:layout_marginStart="5dp"/>
+                <!--PQWER-->
+                <TextView
+                    android:id="@+id/abilityLetter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/abilityLetter"
+                    android:textSize="20dp" />
 
-                    <!--PQWER-->
-                    <TextView
-                        android:layout_alignParentEnd="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/abilityLetter"
-                        android:textSize="20sp"
-                        android:text="@string/abilityLetter"
-                        android:layout_marginEnd="5dp"/>
-
-                </RelativeLayout>
+            </RelativeLayout>
 
             <!--Description-->
             <TextView
+                android:id="@+id/abilityDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/abilityDesc"
+                android:layout_marginStart="15dp"
                 android:text="@string/abilityDesc"
-                android:textSize="18sp"
-                android:layout_marginStart="15dp"/>
+                android:textSize="18dp" />
 
         </LinearLayout>
 

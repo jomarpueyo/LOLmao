@@ -42,7 +42,7 @@ public class InfoFragment extends Fragment {
 
         //Populate RecyclerView
         ArrayList<CardItem> abilitiesList = new ArrayList<>();
-        loadCards(abilitiesList,champ,false);
+        loadCards(abilitiesList, champ, false);
 
         //Load default
         RecyclerView.LayoutManager mLayoutManager;
@@ -59,14 +59,14 @@ public class InfoFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                if(b){
+                if (b) {
                     abilitiesList.clear();
-                    loadCards(abilitiesList,champ,true);
+                    loadCards(abilitiesList, champ, true);
                     toggleAbilities.setText(R.string.ToggleOnButton);
                 }
-                if(!b){
+                if (!b) {
                     abilitiesList.clear();
-                    loadCards(abilitiesList,champ,false);
+                    loadCards(abilitiesList, champ, false);
                     toggleAbilities.setText(R.string.ToggleOffButton);
                 }
 
@@ -78,16 +78,16 @@ public class InfoFragment extends Fragment {
 
         TextView tipsText = view.findViewById(R.id.allytipsText);
         TextView enemyTips = view.findViewById(R.id.enemytipsText);
-        tipsText.setText(String.join("\n\n",champ.getAllyTips()));
-        enemyTips.setText(String.join("\n\n",champ.getEnemyTips()));
+        tipsText.setText(String.join("\n\n", champ.getAllyTips()));
+        enemyTips.setText(String.join("\n\n", champ.getEnemyTips()));
 
         return view;
     }
 
-    private void loadCards(ArrayList<CardItem> abilitiesList, Champion champ, boolean detailsOn){
+    private void loadCards(ArrayList<CardItem> abilitiesList, Champion champ, boolean detailsOn) {
         //TODO: Clean up this whole section
         //Spell Details and Ratios
-        if(detailsOn){
+        if (detailsOn) {
             //Passive
             abilitiesList.add(new CardItem(
                     champ.getPassive().getImage().getURL(),
@@ -95,7 +95,7 @@ public class InfoFragment extends Fragment {
                     filterText(champ.getPassive().description())));
 
             //QWER Spells
-            for(final ChampionSpell spell: champ.getSpells()){
+            for (final ChampionSpell spell : champ.getSpells()) {
 
                 String manaResource = spell.getResource();
                 String resourceCost = "";
@@ -105,77 +105,77 @@ public class InfoFragment extends Fragment {
                 String damageToolTip = spell.getTooltip();
 
                 //Replacing Spell Coefficients: {{ aX }}
-                for(final SpellVariables var : spell.getVariables()){
+                for (final SpellVariables var : spell.getVariables()) {
                     String spellCoef = "";
-                    for(double coef : var.getCoefficients()){
+                    for (double coef : var.getCoefficients()) {
                         spellCoef = String.valueOf(coef);
                     }
-                    damageToolTip = damageToolTip.replace("{{ "+var.getKey()+" }}", spellCoef);
+                    damageToolTip = damageToolTip.replace("{{ " + var.getKey() + " }}", spellCoef);
                 }
 
                 //Replacing Effect Coefficients: {{ eX }}
                 int j = 1;
-                while(j < spell.getEffects().size()){
-                    String effectHolder = "{{ e"+j+" }}";
+                while (j < spell.getEffects().size()) {
+                    String effectHolder = "{{ e" + j + " }}";
                     String effectString = spell.getEffects().get(j).toString();
 
                     List<Double> list = spell.getEffects().get(j);
-                    if(list.get(0).equals(list.get(list.size()-1))){
+                    if (list.get(0).equals(list.get(list.size() - 1))) {
                         effectString = list.get(0).toString();
                     }
 
-                    damageToolTip = damageToolTip.replace(effectHolder,effectString.replaceAll("\\.0",""));
+                    damageToolTip = damageToolTip.replace(effectHolder, effectString.replaceAll("\\.0", ""));
                     j++;
                 }
 
                 //Replacing Ability Resources: {{ abilityResourceName }}
-                if(manaResource.contains("{")){
-                    manaResource=champ.getResource();
+                if (manaResource.contains("{")) {
+                    manaResource = champ.getResource();
                 }
 
                 //Organizing spell cost output
                 int i = 0;
-                for(int cost : spell.getCosts()){
+                for (int cost : spell.getCosts()) {
 
-                    if(cost == 0 && champ.getResource().equals("No Cost")) break;
+                    if (cost == 0 && champ.getResource().equals("No Cost")) break;
 
-                    if(spell.getCosts().get(0).equals(spell.getCosts().get(2))){
-                        if(manaResource.equals("No Cost")){
+                    if (spell.getCosts().get(0).equals(spell.getCosts().get(2))) {
+                        if (manaResource.equals("No Cost")) {
                             resourceCost = manaResource;
                             manaResource = "";
                             break;
                         } else {
-                            resourceCost = cost +" "+ manaResource + " at all levels";
+                            resourceCost = cost + " " + manaResource + " at all levels";
                             manaResource = "";
                             break;
                         }
                     }
 
-                    if(i==(spell.getCosts().size()-1)){
-                        resourceCost += cost+" ";
+                    if (i == (spell.getCosts().size() - 1)) {
+                        resourceCost += cost + " ";
                         break;
                     }
-                    resourceCost += cost+", ";
+                    resourceCost += cost + ", ";
                     i++;
                 }
 
                 //Organizing Cooldown Output
                 i = 0;
-                for(Double cooldownNum: spell.getCooldowns()){
+                for (Double cooldownNum : spell.getCooldowns()) {
                     String cooldown = cooldownNum.toString();
-                    cooldown = cooldown.replaceAll("\\.0","");
+                    cooldown = cooldown.replaceAll("\\.0", "");
 
-                    if(spell.getCooldowns().get(0).equals(spell.getCooldowns().get(2)) ){
-                        cooldowns = cooldown+ " " + seconds + " at all levels";
-                        seconds ="";
+                    if (spell.getCooldowns().get(0).equals(spell.getCooldowns().get(2))) {
+                        cooldowns = cooldown + " " + seconds + " at all levels";
+                        seconds = "";
                         break;
                     }
 
-                    if(i==(spell.getCosts().size()-1)){ //Last iteration remove comma
-                        cooldowns += cooldown+" ";
+                    if (i == (spell.getCosts().size() - 1)) { //Last iteration remove comma
+                        cooldowns += cooldown + " ";
                         break;
                     }
-                    cooldowns += cooldown+", ";
+                    cooldowns += cooldown + ", ";
                     i++;
                 }
 
@@ -184,13 +184,13 @@ public class InfoFragment extends Fragment {
                         spell.getImage().getURL(),
                         spell.getName(),
                         filterText(damageToolTip)
-                                +"\n"+resourceCost + manaResource
-                                +"\n"+cooldowns + seconds
+                                + "\n" + resourceCost + manaResource
+                                + "\n" + cooldowns + seconds
                 ));
             }
         }
         //Spell Descriptions
-        else{
+        else {
             //passive
             abilitiesList.add(new CardItem(
                     champ.getPassive().getImage().getURL(),
@@ -198,7 +198,7 @@ public class InfoFragment extends Fragment {
                     filterText(champ.getPassive().description())));
 
             //QWER Spells
-            for(final ChampionSpell spell: champ.getSpells()){
+            for (final ChampionSpell spell : champ.getSpells()) {
                 abilitiesList.add(new CardItem(
                         spell.getImage().getURL(),
                         spell.getName(),
@@ -208,10 +208,10 @@ public class InfoFragment extends Fragment {
         }
     }
 
-    private String filterText(String s){
+    private String filterText(String s) {
         //Do not fix "Redundant"
-        return s.replaceAll("<\\/{0,1}font.*?>","")
-                .replaceAll("<br>","\n")
+        return s.replaceAll("<\\/{0,1}font.*?>", "")
+                .replaceAll("<br>", "\n")
                 .replaceAll("<[^>]*>", "");
     }
 

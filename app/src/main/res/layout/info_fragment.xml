@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/abilityTitle"
@@ -21,25 +20,22 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/ChampionAbilities"
-                android:textSize="30sp"
-                />
+                android:textSize="30dp" />
 
             <Switch
+                android:id="@+id/toggleAbilities"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="@string/ToggleOnButton"
-                android:id="@+id/toggleAbilities"
                 android:layout_alignEnd="@id/abilityTitle"
-                />
+                android:layout_marginEnd="5dp"
+                android:text="@string/ToggleOnButton" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/abilityTitle"
-                android:padding="5dp"
-                >
+                android:padding="5dp">
 
             </android.support.v7.widget.RecyclerView>
 
@@ -50,31 +46,28 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/ally_tips"
-            android:textSize="30sp"
-            />
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/allytipsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="18sp"
-            />
+            android:textSize="18dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/enemy_tips"
-            android:textSize="30sp"
-            />
+            android:textSize="30dp" />
+
         <TextView
             android:id="@+id/enemytipsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="18sp"
-            />
+            android:textSize="18dp" />
 
     </LinearLayout>
 

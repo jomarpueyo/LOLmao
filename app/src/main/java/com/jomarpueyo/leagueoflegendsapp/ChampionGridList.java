@@ -34,26 +34,25 @@ public class ChampionGridList extends AppCompatActivity {
         //TODO: Add support for multi-regional (For languages) Priority: low
         TextView textView = findViewById(R.id.textView);
         String thisVersion = "";
-        try{
+        try {
             final Versions versions = Versions.withRegion(Region.NORTH_AMERICA).get();
             //TODO: Fix logic on this (Still unsure about Orianna Library use)
-            for(final String version : versions){
+            for (final String version : versions) {
                 thisVersion = version;
                 break;
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             onlineMode = false;
         }
 
         GridLayout mainGrid = findViewById(R.id.mainGrid);
-        if(onlineMode){
-            textView.append(" "+thisVersion);
+        if (onlineMode) {
+            textView.append(" " + thisVersion);
 
             //populate grid
             final Champions champions = Champions.withRegion(Region.NORTH_AMERICA).get();
-            for(final Champion champion : champions){
+            for (final Champion champion : champions) {
                 //Assign image button properties here
                 ImageButton newIMGButton = new ImageButton(this);
                 newIMGButton.setTag(champion.getId());
@@ -62,7 +61,7 @@ public class ChampionGridList extends AppCompatActivity {
             }
         }
         //offline
-        else{
+        else {
             textView.append(" 3? Maybe 4?");
 
             ImageButton newIMGButton = new ImageButton(this);
@@ -78,42 +77,42 @@ public class ChampionGridList extends AppCompatActivity {
     }
 
     //TODO: Change grid size,
-    private void setSingleEvent(GridLayout mainGrid){
+    private void setSingleEvent(GridLayout mainGrid) {
         int childCount = mainGrid.getChildCount();
 
         //Variable width to adjust for other mobile device screens
         //TODO: Test other mobile screens
         int width = Resources.getSystem().getDisplayMetrics().widthPixels;
-        int gridCol = width/200;
+        int gridCol = width / 200;
 
         mainGrid.setColumnCount(gridCol);
-        for(int i = 0; i <childCount; i++){
+        for (int i = 0; i < childCount; i++) {
             ImageButton imageButton = (ImageButton) mainGrid.getChildAt(i);
             String passTag = mainGrid.getChildAt(i).getTag().toString();
 
-            imageButton.setOnClickListener(new View.OnClickListener(){
+            imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view){
+                public void onClick(View view) {
                     Intent intent = new Intent(ChampionGridList.this, ChampionDetailsTabs.class);
-                    intent.putExtra("CHAMP_ID",passTag);
+                    intent.putExtra("CHAMP_ID", passTag);
                     startActivity(intent);
                 }
             });
         }
     }
 
-    private void loadIntoView(ImageView imageView, String url){
+    private void loadIntoView(ImageView imageView, String url) {
         Picasso.get().load(url).into(imageView);
     }
 
     //Additive grid layout - More champions, no problem.
-    private void loadGridImage(ImageButton imageButton){
+    private void loadGridImage(ImageButton imageButton) {
         GridLayout mainGrid = findViewById(R.id.mainGrid);
         imageButton.setImageResource(R.mipmap.teemo_sqimg);
         imageButton.setScaleX(1.5f);
         imageButton.setScaleY(1.5f);
         imageButton.setBackgroundColor(Color.TRANSPARENT);
-        imageButton.setPadding(40,40,40,40);
+        imageButton.setPadding(40, 40, 40, 40);
         imageButton.isClickable();
         mainGrid.addView(imageButton);
     }
