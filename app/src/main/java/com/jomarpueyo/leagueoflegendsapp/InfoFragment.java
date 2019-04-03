@@ -78,8 +78,10 @@ public class InfoFragment extends Fragment {
 
         TextView tipsText = view.findViewById(R.id.allytipsText);
         TextView enemyTips = view.findViewById(R.id.enemytipsText);
-        tipsText.setText(String.join("\n\n", champ.getAllyTips()));
-        enemyTips.setText(String.join("\n\n", champ.getEnemyTips()));
+        String aTips = "•     " + String.join("\n\n•     ", champ.getAllyTips());
+        String eTips = "•     " + String.join("\n\n•     ", champ.getEnemyTips());
+        tipsText.setText(aTips);
+        enemyTips.setText(eTips);
 
         return view;
     }

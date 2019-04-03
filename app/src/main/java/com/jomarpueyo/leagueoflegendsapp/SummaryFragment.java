@@ -28,56 +28,52 @@ public class SummaryFragment extends Fragment {
         ChampionDetailsTabs activity = (ChampionDetailsTabs) getActivity();
         Champion champ = activity.champData();
 
+        Log.d("OUTPUT", champ.getLocale().toString());
+
         //Initialize UI
         ImageView splashImage = view.findViewById(R.id.splashImage);
         TextView nameText = view.findViewById(R.id.championName);
         TextView titleText = view.findViewById(R.id.championTitle);
-        TextView champValues = view.findViewById(R.id.champValues);
-        ImageView loadingImg = view.findViewById(R.id.loadingImg);
         TextView loreText = view.findViewById(R.id.loreTextView);
-        TextView scaleText = view.findViewById(R.id.champScales);
+        TextView text1 = view.findViewById(R.id.topText1);
+        TextView text2 = view.findViewById(R.id.topText2);
+        TextView text3 = view.findViewById(R.id.topText3);
+        TextView aText = view.findViewById(R.id.allyText);
+        TextView eText = view.findViewById(R.id.enemyText);
 
         //Set values
         loadIntoView(splashImage, champ.getSkins().get(0).getSplashImageURL());
         nameText.setText(String.valueOf(champ.getName()));
         titleText.setText(String.valueOf(champ.getTitle()));
 
-        Log.d("OUTPUT", champ.getSkins().get(0).getLoadingImageURL());
+        //Set Top Texts
+        String category = "Category\n" + String.join("/", champ.getTags());
+        text1.setText(category);
 
-        //Set Champion Values
-        String champRatings = "Role: " + String.join("/", champ.getTags());
+        String resource = "Resource Type\n" + champ.getResource();
+        text2.setText(resource);
 
-        champRatings += "\nResource Type: " + champ.getResource()
-                + "\nAttack Rating: " + champ.getPhysicalRating()
-                + "\nMagic Rating: " + champ.getMagicRating()
-                + "\nDefense Rating: " + champ.getDefenseRating()
-                + "\nDifficulty: " + champ.getDifficultyRating();
-        champValues.setText(champRatings);
-
-        //TODO: Champion Stats
-        ChampionStats cs = champ.getStats();
-        String champScales =
-                "Health " + cs.getHealth() + " - " + (cs.getHealth() + cs.getHealthPerLevel() * 18)
-                        + "\nHealth Regen. " + cs.getHealthRegen() + " - " + (cs.getHealthRegen() + cs.getHealthRegenPerLevel() * 18)
-                        + "\nMana " + cs.getMana() + " - " + (cs.getMana() + cs.getManaPerLevel() * 18)
-                        + "\nMana Regen. " + cs.getManaRegen() + " - " + (cs.getManaRegen() + cs.getManaRegenPerLevel() * 18);
-
-        Log.d("OUTPUT", champScales);
-
-
-        //Set Champion Loading Image
-        loadIntoView(loadingImg, champ.getSkins().get(0).getLoadingImageURL());
-        loadingImg.setScaleX(1.5f);
-        loadingImg.setScaleY(1.5f);
+        String difficulty = "Difficulty\n" + champ.getDifficultyRating();
+        text3.setText(difficulty);
 
         //Set Lore
-        String adjust = "     " + champ.getLore();
-        loreText.setText(adjust);
+        loreText.setText(adjustText(champ.getLore()));
+
+        //Tips
+        String adjust = "•" + adjustText(champ.getAllyTips().get(0));
+        aText.setText(adjust);
+        adjust = "•" + adjustText(champ.getEnemyTips().get(0));
+        eText.setText(adjust);
+
 
         return view;
     }
 
     private void loadIntoView(ImageView imageView, String url) {
         Picasso.get().load(url).into(imageView);
+    }
+
+    private String adjustText(String text) {
+        return "     " + text;
     }
 }

@@ -108,7 +108,7 @@ public class ChampionGridList extends AppCompatActivity {
     //Additive grid layout - More champions, no problem.
     private void loadGridImage(ImageButton imageButton) {
         GridLayout mainGrid = findViewById(R.id.mainGrid);
-        imageButton.setImageResource(R.mipmap.teemo_sqimg);
+        imageButton.setImageResource(R.drawable.teemo_sqimg);
         imageButton.setScaleX(1.5f);
         imageButton.setScaleY(1.5f);
         imageButton.setBackgroundColor(Color.TRANSPARENT);
