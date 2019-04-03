@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import com.merakianalytics.orianna.types.core.staticdata.Champion;
 import com.merakianalytics.orianna.types.core.staticdata.ChampionSpell;
@@ -20,8 +19,8 @@ import com.merakianalytics.orianna.types.core.staticdata.SpellVariables;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InfoFragment extends Fragment {
-    private static final String TAG = "InfoFragment";
+public class AbilitiesFragment extends Fragment {
+    private static final String TAG = "AbilitiesFragment";
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -29,7 +28,7 @@ public class InfoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.info_fragment, container, false);
+        View view = inflater.inflate(R.layout.abilities_fragment, container, false);
 
         ChampionDetailsTabs activity = (ChampionDetailsTabs) getActivity();
         Champion champ = activity.champData();
@@ -38,10 +37,10 @@ public class InfoFragment extends Fragment {
         Switch toggleAbilities;
         toggleAbilities = view.findViewById(R.id.toggleAbilities);
         //TODO: Temporarily disabled
-//        toggleAbilities.setVisibility(View.GONE);
+        toggleAbilities.setVisibility(View.GONE);
 
         //Populate RecyclerView
-        ArrayList<CardItem> abilitiesList = new ArrayList<>();
+        ArrayList<AbilitiesCard> abilitiesList = new ArrayList<>();
         loadCards(abilitiesList, champ, false);
 
         //Load default
@@ -49,7 +48,7 @@ public class InfoFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(view.getContext());
-        mAdapter = new abilitiesAdapter(abilitiesList);
+        mAdapter = new AbilitiesAdapter(abilitiesList);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -71,27 +70,20 @@ public class InfoFragment extends Fragment {
                 }
 
                 //Update Recycler
-                mAdapter = new abilitiesAdapter(abilitiesList);
+                mAdapter = new AbilitiesAdapter(abilitiesList);
                 mRecyclerView.setAdapter(mAdapter);
             }
         });
 
-        TextView tipsText = view.findViewById(R.id.allytipsText);
-        TextView enemyTips = view.findViewById(R.id.enemytipsText);
-        String aTips = "•     " + String.join("\n\n•     ", champ.getAllyTips());
-        String eTips = "•     " + String.join("\n\n•     ", champ.getEnemyTips());
-        tipsText.setText(aTips);
-        enemyTips.setText(eTips);
-
         return view;
     }
 
-    private void loadCards(ArrayList<CardItem> abilitiesList, Champion champ, boolean detailsOn) {
+    private void loadCards(ArrayList<AbilitiesCard> abilitiesList, Champion champ, boolean detailsOn) {
         //TODO: Clean up this whole section
         //Spell Details and Ratios
         if (detailsOn) {
             //Passive
-            abilitiesList.add(new CardItem(
+            abilitiesList.add(new AbilitiesCard(
                     champ.getPassive().getImage().getURL(),
                     champ.getPassive().getName(),
                     filterText(champ.getPassive().description())));
@@ -181,8 +173,8 @@ public class InfoFragment extends Fragment {
                     i++;
                 }
 
-                //Add all texts to CardItem
-                abilitiesList.add(new CardItem(
+                //Add all texts to AbilitiesCard
+                abilitiesList.add(new AbilitiesCard(
                         spell.getImage().getURL(),
                         spell.getName(),
                         filterText(damageToolTip)
@@ -194,14 +186,14 @@ public class InfoFragment extends Fragment {
         //Spell Descriptions
         else {
             //passive
-            abilitiesList.add(new CardItem(
+            abilitiesList.add(new AbilitiesCard(
                     champ.getPassive().getImage().getURL(),
                     champ.getPassive().getName(),
                     filterText(champ.getPassive().description())));
 
             //QWER Spells
             for (final ChampionSpell spell : champ.getSpells()) {
-                abilitiesList.add(new CardItem(
+                abilitiesList.add(new AbilitiesCard(
                         spell.getImage().getURL(),
                         spell.getName(),
                         filterText(spell.getDescription())));

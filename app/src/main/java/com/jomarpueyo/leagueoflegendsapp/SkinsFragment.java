@@ -19,19 +19,20 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class ShopFragment extends Fragment {
-    private static final String TAG = "ShopFragment";
+public class SkinsFragment extends Fragment {
+    private static final String TAG = "SkinsFragment";
 
     private int currentDots;
     private Champion thisChamp;
     private LinearLayout mDotLayout;
     private TextView tv;
     private ImageView loadingView;
+    private TextView skinDesc;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.shop_fragment, container, false);
+        View view = inflater.inflate(R.layout.skins_fragment, container, false);
 
         ChampionDetailsTabs activity = (ChampionDetailsTabs) getActivity();
         Champion champ = activity.champData();
@@ -65,6 +66,10 @@ public class ShopFragment extends Fragment {
 
         addDotsIndicator(0);
         viewPager.addOnPageChangeListener(viewListener);
+
+        //Skin Descriptions
+        skinDesc = view.findViewById(R.id.skinDesc);
+
 
         return view;
     }

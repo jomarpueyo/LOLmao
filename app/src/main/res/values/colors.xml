@@ -6,6 +6,7 @@
     <color name="transparentWhite">#cccccc</color>
     <color name="White">#FFFFFF</color>
     <color name="tempBG">#24273F</color>
+    <color name="lightBG">#393F66</color>
     <color name="ally">#87AD88</color>
     <color name="enemy">#EB8279</color>
 </resources>

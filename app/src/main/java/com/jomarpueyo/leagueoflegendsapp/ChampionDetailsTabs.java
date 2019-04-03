@@ -53,9 +53,10 @@ public class ChampionDetailsTabs extends AppCompatActivity {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new SummaryFragment(), "Summary");
-        adapter.addFragment(new ShopFragment(), "Skins");
-        adapter.addFragment(new InfoFragment(), "Gameplay");
+        adapter.addFragment(new SkinsFragment(), "Skins");
+        adapter.addFragment(new AbilitiesFragment(), "Abilities");
         adapter.addFragment(new ItemsFragment(), "Items");
+        adapter.addFragment(new TipsFragment(), "Tips");
         viewPager.setAdapter(adapter);
     }
 

@@ -38,8 +38,7 @@ public class SummaryFragment extends Fragment {
         TextView text1 = view.findViewById(R.id.topText1);
         TextView text2 = view.findViewById(R.id.topText2);
         TextView text3 = view.findViewById(R.id.topText3);
-        TextView aText = view.findViewById(R.id.allyText);
-        TextView eText = view.findViewById(R.id.enemyText);
+
 
         //Set values
         loadIntoView(splashImage, champ.getSkins().get(0).getSplashImageURL());
@@ -58,13 +57,6 @@ public class SummaryFragment extends Fragment {
 
         //Set Lore
         loreText.setText(adjustText(champ.getLore()));
-
-        //Tips
-        String adjust = "•" + adjustText(champ.getAllyTips().get(0));
-        aText.setText(adjust);
-        adjust = "•" + adjustText(champ.getEnemyTips().get(0));
-        eText.setText(adjust);
-
 
         return view;
     }

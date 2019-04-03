@@ -12,8 +12,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class abilitiesAdapter extends RecyclerView.Adapter<abilitiesAdapter.abilitiesViewHolder> {
-    private ArrayList<CardItem> mAbilitiesList;
+public class AbilitiesAdapter extends RecyclerView.Adapter<AbilitiesAdapter.abilitiesViewHolder> {
+    private ArrayList<AbilitiesCard> mAbilitiesList;
 
     public static class abilitiesViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
@@ -31,7 +31,7 @@ public class abilitiesAdapter extends RecyclerView.Adapter<abilitiesAdapter.abil
         }
     }
 
-    public abilitiesAdapter(ArrayList<CardItem> abilitiesList) {
+    public AbilitiesAdapter(ArrayList<AbilitiesCard> abilitiesList) {
         mAbilitiesList = abilitiesList;
     }
 
@@ -45,7 +45,7 @@ public class abilitiesAdapter extends RecyclerView.Adapter<abilitiesAdapter.abil
 
     @Override
     public void onBindViewHolder(@NonNull abilitiesViewHolder abilitiesViewHolder, int i) {
-        CardItem currentItem = mAbilitiesList.get(i);
+        AbilitiesCard currentItem = mAbilitiesList.get(i);
 
         abilitiesViewHolder.mTextView1.setText(currentItem.getText1());
         abilitiesViewHolder.mTextView2.setText(currentItem.getText2());

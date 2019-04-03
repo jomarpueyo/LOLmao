@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:layout_gravity="center"
+    android:background="@color/tempBG"
     tools:context=".ChampionGridList">
 
     <LinearLayout
@@ -29,9 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/champions"
-            android:textColor="@android:color/black"
             android:textSize="34dp" />
-
 
         <!--Grid of Champions-->
         <GridLayout
@@ -40,7 +39,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="5dp"
-            android:columnCount="7">
+            android:columnCount="7"
+            android:gravity="center">
 
         </GridLayout>
 

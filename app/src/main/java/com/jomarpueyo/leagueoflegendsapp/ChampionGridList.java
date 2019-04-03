@@ -76,7 +76,6 @@ public class ChampionGridList extends AppCompatActivity {
         setSingleEvent(mainGrid);
     }
 
-    //TODO: Change grid size,
     private void setSingleEvent(GridLayout mainGrid) {
         int childCount = mainGrid.getChildCount();
 

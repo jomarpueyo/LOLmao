@@ -1,11 +1,11 @@
 package com.jomarpueyo.leagueoflegendsapp;
 
-public class CardItem {
+public class AbilitiesCard {
     private String mUrl;
     private String mText1;
     private String mText2;
 
-    public CardItem(String url, String text1, String text2) {
+    public AbilitiesCard(String url, String text1, String text2) {
         mUrl = url;
         mText1 = text1;
         mText2 = text2;

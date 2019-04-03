@@ -23,5 +23,9 @@
     <string name="ratingTitle">Champion Ratings</string>
     <string name="ally_tips">Ally Tips</string>
     <string name="enemy_tips">Enemy Tips</string>
+    <string name="gametips">Gameplay Tips</string>
+    <string name="sr">Summoner\'s Rift</string>
+    <string name="ha">Howling Abyss</string>
+    <string name="tt">Twisted Treeline</string>
 
 </resources>
