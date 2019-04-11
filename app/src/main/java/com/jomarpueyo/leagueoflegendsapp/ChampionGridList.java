@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -46,12 +47,14 @@ public class ChampionGridList extends AppCompatActivity {
             onlineMode = false;
         }
 
+        thisVersion = "9.6.1";
+
         GridLayout mainGrid = findViewById(R.id.mainGrid);
         if (onlineMode) {
             textView.append(" " + thisVersion);
 
             //populate grid
-            final Champions champions = Champions.withRegion(Region.NORTH_AMERICA).get();
+            final Champions champions = Champions.withVersion(thisVersion).withRegion(Region.NORTH_AMERICA).get();
             for (final Champion champion : champions) {
                 //Assign image button properties here
                 ImageButton newIMGButton = new ImageButton(this);

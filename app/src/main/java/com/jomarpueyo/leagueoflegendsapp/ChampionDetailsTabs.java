@@ -34,6 +34,7 @@ public class ChampionDetailsTabs extends AppCompatActivity {
         int champ_id = Integer.parseInt(intent.getStringExtra("CHAMP_ID"));
         final Champion champ = Champion
                 .withId(champ_id)
+                .withVersion("9.6.1")
                 .withRegion(Region.NORTH_AMERICA)
                 .get();
 
